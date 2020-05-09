@@ -1,23 +1,32 @@
-import express from "express";
-import passport from "passport";
-import morgan from "morgan";
-import * as expressSession from "express-session";
+var express = require("express");
+var passport = require("passport");
+var morgan = require("morgan");
+var pgp = require("pg-promise")(/* options */);
+var session = require("express-session");
+var path = require("path");
+//var allusers = require("./routes");
+var auth = require("./auth/authorization");
+
+require("dotenv").config();
 const cn = {
-  host: "localhost",
-  port: 5432,
-  database: "guidedb",
-  user: "admin",
-  password: "password",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
   max: 30, // use up to 30 connections
 };
-var pgp = require("pg-promise")(/* options */);
 var db = pgp(cn);
-
+const port = 5000;
 const app = express();
 app.use(morgan("dev"));
-const port = 3000;
+app.use("", auth);
+// app.use("", allusers);
+
+//app.use(cors);
 
 //Home Page routes.
+
 app.get("/", (req, res) => {
   db.any("SELECT * FROM users", [true])
     .then(function (data) {
@@ -30,16 +39,7 @@ app.get("/", (req, res) => {
 
   //Login App routes.
 });
-app.get("/login", (req, res) => {
-  res.send("Login Holding text");
-});
-app.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  function (req, res) {
-    res.redirect("/");
-  }
-);
+
 app.listen(port, (err) => {
   if (err) {
     return console.error(err);
