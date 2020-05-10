@@ -1,6 +1,8 @@
 var express = require("express");
-var router = express.Router();
 var dbfunctions = require("../Database/functions");
+var bcrypt = require("bcrypt");
+
+var router = express.Router();
 router.get("/login", (req, res) => {
   res.json({
     currently: "🔐",
@@ -23,24 +25,23 @@ function validateuser(user) {
 }
 router.post("/signup", (req, res, next) => {
   if (validateuser(req.body)) {
-    let returned = dbfunctions
-      .searchdbforvalue(req.body.email)
-      .then((userdata) => {
-        console.log(userdata);
-        res.json({
-          userdata,
-          currently: "✅",
+    dbfunctions.searchdbforvalue(req.body.email).then((user) => {
+      //If user not found object is Empty
+      if (user.length == 0) {
+        //user is unique
+        bcrypt.hash(req.body.password, 10).then((hash) => {
+          res.json({
+            hash,
+            currently: "✅",
+          });
         });
-      });
+      } else {
+        //Email is currently avalible in database raise Exception
+        next(new Error("Email in use"));
+      }
+    });
   } else {
     next(new Error("Invalid user"));
   }
 });
-// app.post(
-//   "/login",
-//   passport.authenticate("local", { failureRedirect: "/login" }),
-//   function (req, res) {
-//     res.redirect("/");
-//   }
-// );
 module.exports = router;
