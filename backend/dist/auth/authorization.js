@@ -34,6 +34,7 @@ router.post("/login", (req, res, next) => {
                             secure: isSecure,
                         });
                         res.json({
+                            userId: user[0].id,
                             currently: "You're Logged In 🔓",
                         });
                     }

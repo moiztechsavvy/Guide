@@ -5,6 +5,7 @@ var morgan = require("morgan");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var path = require("path");
+const cors = require("cors");
 require("dotenv").config();
 //Self Created Modules.
 var home = require("./routes");
@@ -18,11 +19,14 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}));
 app.use("", auth);
 app.use("", home);
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({
+    res.status(err.status || 500).json({
         message: err.message,
         error: req.app.get("env") === "development" ? err : {},
     });

@@ -42,6 +42,7 @@ router.post("/login", (req, res, next) => {
               //true, secure in Production
             });
             res.json({
+              userId: user[0].id,
               currently: "You're Logged In 🔓",
             });
           } else {
