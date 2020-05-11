@@ -7,6 +7,22 @@ router.get("/login", (req, res) => {
         currently: "🔐",
     });
 });
+var router = express.Router();
+router.post("/login", (req, res, next) => {
+    if (validateuser(req.body)) {
+        dbfunctions.searchdbforvalue(req.body.email).then((user) => {
+            //If user not found object is Empty
+            res.json({
+                currently: "🔐",
+                fam: user,
+            });
+            // if (user.length == 0) {
+            // }
+            // else{
+            // }
+        });
+    }
+});
 router.get("/signup", (req, res) => {
     res.json({
         currently: "Nobodys signed up fam",
@@ -26,9 +42,17 @@ router.post("/signup", (req, res, next) => {
             if (user.length == 0) {
                 //user is unique
                 bcrypt.hash(req.body.password, 10).then((hash) => {
-                    res.json({
-                        hash,
-                        currently: "✅",
+                    const user = {
+                        email: req.body.email,
+                        password: hash,
+                        name: req.body.name,
+                        created_at: new Date(),
+                    };
+                    dbfunctions.createUser(user).then((response) => {
+                        res.json({
+                            response,
+                            currently: "✅",
+                        });
                     });
                 });
             }
