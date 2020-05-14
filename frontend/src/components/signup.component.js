@@ -1,83 +1,112 @@
 import React, { Component } from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDuration = this.onChangeDuration.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeAddress = this.onChangeAddress.bind(this);
+    this.onChangeZipCode = this.onChangeZipCode.bind(this);
+    this.onChangeLastName = this.onChangeLastName.bind(this);
+    this.onChangeFirstName = this.onChangeFirstName.bind(this);
+    this.onChangeState = this.onChangeState.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
+    this.flag = 0;
+    this.errorMessage = "";
 
     this.state = {
-      username: "",
-      description: "",
-      duration: 0,
-      date: new Date(),
-      users: [],
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      Address: "",
+      State: "",
+      ZipCode: "",
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/")
-      .then((response) => {
-        if (response.data.length > 0) {
-          console.log(response.data);
-          this.setState({
-            users: response.data.map((user) => user.name),
-            username: response.data[0].name,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  onChangeUsername(e) {
+  // componentDidMount() {
+  //   axios
+  //     .get("http://localhost:5000/")
+  //     .then((response) => {
+  //       if (response.data.length > 0) {
+  //         console.log(response.data);
+  //         this.setState({
+  //           users: response.data.map((user) => user.name),
+  //           email: response.data[0].name,
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+  onChangeState(e) {
     this.setState({
-      username: e.target.value,
+      State: e.target.value,
+    });
+  }
+  onChangeZipCode(e) {
+    this.setState({
+      ZipCode: e.target.value,
+    });
+  }
+  onChangeAddress(e) {
+    this.setState({
+      Address: e.target.value,
+    });
+  }
+  onChangeLastName(e) {
+    this.setState({
+      lastName: e.target.value,
     });
   }
 
-  onChangeDescription(e) {
+  onChangeFirstName(e) {
     this.setState({
-      description: e.target.value,
+      firstName: e.target.value,
+    });
+  }
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value,
     });
   }
 
-  onChangeDuration(e) {
+  onChangePassword(e) {
     this.setState({
-      duration: e.target.value,
-    });
-  }
-
-  onChangeDate(date) {
-    this.setState({
-      date: date,
+      password: e.target.value,
     });
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    const exercise = {
-      username: this.state.name,
-      description: this.state.description,
-      duration: this.state.duration,
-      date: this.state.date,
+    const user = {
+      email: this.state.name,
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      Address: this.state.Address,
+      State: this.state.State,
+      ZipCode: this.state.ZipCode,
     };
-
-    console.log(exercise);
-
+    console.log(user);
     axios
-      .post("http://localhost:5000/exercises/add", exercise)
-      .then((res) => console.log(res.data));
+      .post("http://localhost:5000/signup", user)
+      .then((res) => {
+        console.log(res);
+        this.flag = 0;
+      })
+      .catch((err) => {
+        this.flag = 1;
+        this.errorMessage = err.response.data.message;
+        console.log(err.response.data.message);
+      });
 
     window.location = "/";
   }
@@ -88,56 +117,75 @@ export default class SignUp extends Component {
         <h3>Create New Exercise Log</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
-            <select
-              ref="userInput"
-              required
+            <label>First Name </label>
+            <input
+              type="text"
               className="form-control"
-              value={this.state.name}
-              onChange={this.onChangeUsername}
-            >
-              {this.state.users.map(function (user) {
-                return (
-                  <option key={user} value={user}>
-                    {user}
-                  </option>
-                );
-              })}
-            </select>
+              value={this.state.firstName}
+              onChange={this.onChangeFirstName}
+            />
           </div>
           <div className="form-group">
-            <label>Description: </label>
+            <label>Last Name </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.lastName}
+              onChange={this.onChangeLastName}
+            />
+          </div>
+          <div className="form-group">
+            <label>Email: </label>
             <input
               type="text"
               required
               className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
+              value={this.state.email}
+              onChange={this.onChangeEmail}
             />
           </div>
           <div className="form-group">
-            <label>Duration (in minutes): </label>
+            <label>Password: </label>
+            <input
+              type="password"
+              required
+              className="form-control"
+              value={this.state.password}
+              onChange={this.onChangePassword}
+            />
+          </div>
+          <div className="form-group">
+            <label>Address </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.duration}
-              onChange={this.onChangeDuration}
+              value={this.state.Address}
+              onChange={this.onChangeAddress}
             />
           </div>
           <div className="form-group">
-            <label>Date: </label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
-              />
-            </div>
+            <label>State </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.state}
+              onChange={this.onChangeState}
+            />
+          </div>
+          <div className="form-group">
+            <label>ZipCode </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.ZipCode}
+              onChange={this.onChangeZipCode}
+            />
           </div>
 
           <div className="form-group">
             <input
               type="submit"
-              value="Create Exercise Log"
+              value="Create Account"
               className="btn btn-primary"
             />
           </div>

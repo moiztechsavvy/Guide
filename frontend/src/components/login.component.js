@@ -8,6 +8,7 @@ export default class Login extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       email: "",
       password: "",
@@ -73,7 +74,6 @@ export default class Login extends Component {
             <label>Email: </label>
             <input
               type="text"
-              required
               className="form-control"
               value={this.state.email}
               onChange={this.onChangeEmail}
@@ -84,7 +84,6 @@ export default class Login extends Component {
             <label>Password: </label>
             <input
               type="password"
-              required
               className="form-control"
               value={this.state.password}
               onChange={this.onChangePassword}
