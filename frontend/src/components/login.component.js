@@ -39,7 +39,7 @@ export default class Login extends Component {
     console.log(user);
 
     axios
-      .post("http://localhost:5000/login", user)
+      .post("http://localhost:5000/auth/login", user)
       .then((res) => {
         console.log(res.data);
         this.setState({

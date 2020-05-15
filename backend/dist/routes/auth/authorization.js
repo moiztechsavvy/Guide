@@ -1,5 +1,5 @@
 var express = require("express");
-var dbfunctions = require("../Database/functions");
+var dbfunctions = require("../../Database/functions");
 var bcrypt = require("bcrypt");
 var router = express.Router();
 //Function For Validating User Input

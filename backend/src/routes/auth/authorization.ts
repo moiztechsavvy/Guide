@@ -1,5 +1,5 @@
 var express = require("express");
-var dbfunctions = require("../Database/functions");
+var dbfunctions = require("../../Database/functions");
 var bcrypt = require("bcrypt");
 
 var router = express.Router();
@@ -21,11 +21,10 @@ router.get("/login", (req, res) => {
   });
 });
 
-var router = express.Router();
 router.post("/login", (req, res, next) => {
   //Validate User Input.
   if (validateuser(req.body)) {
-    dbfunctions.searchdbforvalue(req.body.email).then((user) => {
+    dbfunctions.searchDBforEmail(req.body.email).then((user) => {
       //If user us found in the database.
 
       if (user.length > 0) {
@@ -69,7 +68,7 @@ router.get("/signup", (req, res) => {
 
 router.post("/signup", (req, res, next) => {
   if (validateuser(req.body)) {
-    dbfunctions.searchdbforvalue(req.body.email).then((user) => {
+    dbfunctions.searchDBforEmail(req.body.email).then((user) => {
       //If user not found object is Empty
       if (user.length == 0) {
         //user is unique
@@ -77,7 +76,11 @@ router.post("/signup", (req, res, next) => {
           const user = {
             email: req.body.email,
             password: hash,
-            name: req.body.name,
+            firstname: req.body.firstName,
+            lastname: req.body.lastName,
+            Address: req.body.Address,
+            state: req.body.State,
+            zipcode: req.body.ZipCode,
             created_at: new Date(),
           };
           dbfunctions.createUser(user).then((response) => {
@@ -89,7 +92,7 @@ router.post("/signup", (req, res, next) => {
         });
       } else {
         //Email is currently avalible in database raise Exception
-        next(new Error("Email in use"));
+        next(new Error("Email in use, Please use a Unique Email"));
       }
     });
   } else {

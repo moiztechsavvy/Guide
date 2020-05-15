@@ -3,9 +3,12 @@ var router = express.Router();
 var db = require("../Database");
 var dbfunctions = require("../Database/functions");
 router.get("/", (req, res) => {
-  dbfunctions.getallvalues().then((value) => {
-    res.json(value);
+  res.json({
+    message: "Welcome to GUIDE HEALTH API https://guidehealth.com",
   });
+  // dbfunctions.getallvalues().then((value) => {
+  //   res.json(value);
+  // });
   //Login App routes.
 });
 

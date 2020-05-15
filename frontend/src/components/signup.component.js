@@ -87,7 +87,7 @@ export default class SignUp extends Component {
     e.preventDefault();
 
     const user = {
-      email: this.state.name,
+      email: this.state.email,
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -97,7 +97,7 @@ export default class SignUp extends Component {
     };
     console.log(user);
     axios
-      .post("http://localhost:5000/signup", user)
+      .post("http://localhost:5000/auth/signup", user)
       .then((res) => {
         console.log(res);
         this.flag = 0;
@@ -108,7 +108,7 @@ export default class SignUp extends Component {
         console.log(err.response.data.message);
       });
 
-    window.location = "/";
+    // window.location = "/";
   }
 
   render() {
@@ -123,6 +123,7 @@ export default class SignUp extends Component {
               className="form-control"
               value={this.state.firstName}
               onChange={this.onChangeFirstName}
+              required
             />
           </div>
           <div className="form-group">
@@ -132,6 +133,7 @@ export default class SignUp extends Component {
               className="form-control"
               value={this.state.lastName}
               onChange={this.onChangeLastName}
+              required
             />
           </div>
           <div className="form-group">
@@ -161,6 +163,7 @@ export default class SignUp extends Component {
               className="form-control"
               value={this.state.Address}
               onChange={this.onChangeAddress}
+              required
             />
           </div>
           <div className="form-group">
@@ -169,7 +172,9 @@ export default class SignUp extends Component {
               type="text"
               className="form-control"
               value={this.state.state}
+              maxLength="2"
               onChange={this.onChangeState}
+              required
             />
           </div>
           <div className="form-group">
@@ -178,7 +183,9 @@ export default class SignUp extends Component {
               type="text"
               className="form-control"
               value={this.state.ZipCode}
+              maxLength="5"
               onChange={this.onChangeZipCode}
+              required
             />
           </div>
 
