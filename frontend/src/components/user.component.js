@@ -1,20 +1,29 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 export default class User extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      items: "",
+    };
   }
   componentDidMount() {
-    axios.get("http://localhost:5000/user/1").then((userData) => {
+    const { userId } = this.props.match.params;
+    const url = `http://localhost:5000/user/${userId}`;
+    axios.get(url).then((userData) => {
       console.log(userData.data);
-      console.log(this.props.location.search);
+      this.setState({
+        user: userData.data[0].email,
+      });
     });
   }
   render() {
+    console.log();
     return (
       <div>
         <h1>user Home Screen</h1>
+        <h1>{this.state.user}</h1>
       </div>
     );
   }
