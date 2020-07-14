@@ -1,0 +1,15 @@
+FROM node:11-alpine
+
+WORKDIR /app
+COPY src ./
+COPY .env ./
+COPY package.json ./
+COPY package-lock.json ./
+COPY tsconfig.json ./
+COPY tslint.json ./
+COPY nodemon.json ./
+
+RUN npm install -g nodemon
+RUN npm install
+
+EXPOSE 5000

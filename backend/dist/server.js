@@ -12,6 +12,7 @@ require("dotenv").config();
 var home = require("./routes");
 var auth = require("./routes/auth/authorization");
 var userHome = require("./routes/user/userhome");
+var authMiddleware = require("./routes/auth/middleware");
 //DataBase Connection.
 var db = require("./Database");
 const port = 5000;
@@ -26,7 +27,8 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
 app.use("/auth", auth);
 app.use("", home);
-app.use("", userHome);
+app.use("/user", authMiddleware.ensureLoggedIn, userHome);
+//
 app.use(function (err, req, res, next) {
     res.status(err.status || 500).json({
         message: err.message,

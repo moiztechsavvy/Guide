@@ -1,0 +1,36 @@
+version: "3.3"
+
+services:
+  # vote:
+  #   build: ./vote
+  #   command: python app.py
+  #   volumes:
+  #    - ./vote:/app
+  #   ports:
+  #     - "5000:80"
+
+  backend:
+    build: ./backend
+    command: nodemon /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    command: nodemon /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:9.4
+    container_name: db
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+volumes:
+  db-data:
