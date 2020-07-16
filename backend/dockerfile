@@ -9,7 +9,6 @@ COPY tsconfig.json ./
 COPY tslint.json ./
 COPY nodemon.json ./
 
-RUN npm install -g nodemon
-RUN npm install
+CMD npm install ; npm install -g nodemon
 
 EXPOSE 5000

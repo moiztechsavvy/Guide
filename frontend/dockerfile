@@ -7,9 +7,6 @@ COPY package-lock.json ./
 COPY src ./
 COPY public ./
 
-RUN npm install -g nodemon
-
-RUN npm install
-RUN npm audit fix
+CMD npm install ; npm install -g nodemon
 
 EXPOSE 3000

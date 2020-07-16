@@ -11,17 +11,17 @@ services:
 
   backend:
     build: ./backend
-    command: nodemon /app
+    command: sh -c "npm install && npm install -g nodemon && nodemon"
     volumes:
-      - ./backend:/app
+      - back:/app
     ports:
       - "5000:5000"
 
   frontend:
     build: ./frontend
-    command: nodemon /app
+    command: sh -c "npm install && npm install --save-dev nodemon && nodemon /app"
     volumes:
-      - ./frontend:/app
+      - front:/app
     ports:
       - "3000:3000"
   db:
@@ -34,3 +34,15 @@ services:
 
 volumes:
   db-data:
+  front:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/frontend
+      o: bind
+  back:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/backend
+      o: bind
