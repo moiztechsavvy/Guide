@@ -11,11 +11,28 @@ require("dotenv").config();
 
 //Self Created Modules.
 var home = require("./routes");
-var auth = require("./routes/auth/authorization");
-var userHome = require("./routes/user/userhome");
-var authMiddleware = require("./routes/auth/middleware");
+// var auth = require("./routes/auth/authorization");
+// var userHome = require("./routes/user/userhome");
+// var authMiddleware = require("./routes/auth/middleware");
 //DataBase Connection.
-var db = require("./Database");
+var sqlite3 = require("sqlite3").verbose();
+// import { open } from "sqlite";
+
+var db = new sqlite3.Database("MAINDATABASE.db", (err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log("Connected to the SQlite database");
+});
+
+// (async () => {
+//   // open the database
+//   console.log("syutfnsdfsn");
+//   var db = await open({
+//     filename: "../database/database.db",
+//     driver: sqlite3.Database,
+//   });
+// })();
 
 const port = 5000;
 const app = express();
@@ -30,10 +47,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
 
-app.use("/auth", auth);
+// app.use("/auth", auth);
 app.use("", home);
 
-app.use("/user", authMiddleware.ensureLoggedIn, userHome);
+// app.use("/user", authMiddleware.ensureLoggedIn, userHome);
 //
 app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({

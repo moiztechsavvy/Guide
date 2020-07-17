@@ -1,45 +1,19 @@
 version: "3.3"
 
 services:
-  # backend:
-  #   build: ./backend
-  #   depends_on:
-  #     - db
-  #   command: sh -c "npm install && npm install -g nodemon && nodemon"
-  #   volumes:
-  #     - ./backend:/app:consistent
-  #   ports:
-  #     - "5000:5000"
-
-  # frontend:
-  #   build: ./new_frontend
-  #   stdin_open: true
-  #   command: sh -c "npm install && npm install -g nodemon && nodemon"
-  #   volumes:
-  #     - ./new_frontend:/app:consistent
-  #   ports:
-  #     - "3000:3000"
-
-  db:
-    image: postgres:9.4
-    container_name: db
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: "trust"
+  backend:
+    build: ./backend
+    command: sh -c "npm install && npm install -g nodemon && nodemon"
     volumes:
-      - ./db-data:/var/lib/postgresql/data:consistent
+      - ./backend:/app:consistent
     ports:
-      - 5431:5432
-# volumes:
-#   db-data:
-# front:
-#   driver: local
-#   driver_opts:
-#     type: none
-#     device: $PWD/frontend
-#     o: bind
-# back:
-#   driver: local
-#   driver_opts:
-#     type: none
-#     device: $PWD/backend
-#     o: bind
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    stdin_open: true
+    command: sh -c "npm install && npm install -g nodemon && nodemon"
+    volumes:
+      - ./frontend:/app:consistent
+    ports:
+      - "3000:3000"
