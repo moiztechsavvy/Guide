@@ -3,7 +3,7 @@ version: "3.3"
 services:
   backend:
     build: ./backend
-    command: bash -c "npm install -g node-pre-gyp node-gyp typescript && npm install sqlite3 source && npm install && npm install -g nodemon && nodemon"
+    command: sh -c "npm install -g node-pre-gyp node-gyp typescript && npm install sqlite3 source && npm install && npm install -g nodemon && nodemon"
     volumes:
       - ./backend:/app:consistent
     ports:
@@ -12,7 +12,7 @@ services:
   frontend:
     build: ./frontend
     stdin_open: true
-    command: bash -c "npm install -g node-pre-gyp react-scripts && npm install && npm install -g nodemon && nodemon"
+    command: sh -c "npm install -g node-pre-gyp react-scripts && npm install && npm install -g nodemon && nodemon"
     volumes:
       - ./frontend:/app:consistent
     ports:
