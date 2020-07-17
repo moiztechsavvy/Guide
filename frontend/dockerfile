@@ -10,6 +10,7 @@ COPY tsconfig.json ./
 COPY src ./
 COPY public ./
 
-CMD npm install ; npm install -g nodemon
+RUN apk add --no-cache bash python2
+# CMD npm install ; npm install -g nodemon
 
 EXPOSE 3000

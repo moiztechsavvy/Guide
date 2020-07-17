@@ -1,6 +1,9 @@
 FROM node:11-alpine
 
 WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
 COPY src ./
 COPY .env ./
 COPY package.json ./
@@ -9,6 +12,7 @@ COPY tsconfig.json ./
 COPY tslint.json ./
 COPY nodemon.json ./
 
-CMD npm install ; npm install -g nodemon
+RUN apk add --no-cache bash python2
+# CMD npm install ; npm install -g nodemon
 
 EXPOSE 5000
