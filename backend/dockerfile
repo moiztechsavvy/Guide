@@ -2,7 +2,7 @@ FROM node:11-alpine
 
 WORKDIR /app
 
-ENV PATH /app/node_modules/.bin:$PATH
+# ENV PATH /app/node_modules/.bin:$PATH
 
 COPY src ./
 COPY .env ./
@@ -13,6 +13,7 @@ COPY tslint.json ./
 COPY nodemon.json ./
 
 RUN apk add --no-cache python2
-# CMD npm install ; npm install -g nodemon
+
+CMD npm install -g node-pre-gyp node-gyp typescript ; npm install sqlite3 source ; npm install --no-bin-links ; npm install -g nodemon ; nodemon
 
 EXPOSE 5000
