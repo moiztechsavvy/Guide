@@ -6,7 +6,7 @@
 
 ## Front End.
 
-- [x] Complete Login Form(secure)
+- [ ] Complete Login Form(secure)
 - [ ] Complete Signup Form(secure)
 - [ ] Google Maps API integration.
 - [ ] Doctors View
