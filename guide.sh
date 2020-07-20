@@ -3,10 +3,10 @@
 
 function menu() {
     echo -e "\nPlease supply an argument. Options are:\n"
-    echo -e "\t-b | --build  To build backend and frontend images"
-    echo -e "\t-r | --run    To run the containers based on the built images"
-    echo -e "\t-s | --stop   To stop the containers"
-    echo -e "\t-lb | --logs_backend   Attach to Container and view Backend Logs"
+    echo -e "\t-b  | --build           To build backend and frontend images"
+    echo -e "\t-r  | --run             To run the containers based on the built images"
+    echo -e "\t-s  | --stop            To stop the containers"
+    echo -e "\t-lb | --logs_backend    Attach to Container and view Backend Logs"
     echo -e "\t-lf | --logs_frontend   Attach to Container and view Frontend Logs"
 }
 
@@ -39,24 +39,22 @@ else
             echo -e "\nContainers are running but it will take about 5-7 mins before you can start using them.\nGrab coffee and do some stretching - coding is coming :)
             \n \nBackend is going to run on port 5000 and frontend on port 3000.\nYou can type 'docker ps' to see how long and where containers have been running."
             ;;
-            -lb | --logs_backend )
+        -lb | --logs_backend )
             echo "Attaching to Backend Docker Container"
             echo -e "To Close this terminal without Stopping using CTRL + C, instead use CTRL+Q for WINDOWS + LINUX or For MACs CMD + Q"
             docker attach $(docker ps -aqf "name=guide_backend")
-            
             ;;
-            -lf | --logs_frontend )
+        -lf | --logs_frontend )
             echo "Attaching to Frontend Docker Container"
             echo -e "To Close this terminal without Stopping using CTRL + C, instead use CTRL+Q for WINDOWS + LINUX or For MACs CMD + Q"
             docker attach $(docker ps -aqf "name=guide_frontend")
-
             ;;
-        -s | --stop)
+        -s | --stop )
             echo "Stopping containers..."
             docker stop guide_backend
             docker stop guide_frontend
             ;;
-        *)
+        * )
             echo "ERROR: unknown parameter \"$PARAM\""
             menu
             exit 1
