@@ -1,1 +1,1 @@
-{"version":3,"file":"middleware.js","sourceRoot":"","sources":["../../../src/routes/auth/middleware.ts"],"names":[],"mappings":"AAAA,4CAA4C;AAC5C,oCAAoC;AACpC,qCAAqC;AACrC,cAAc;AACd,aAAa;AACb,uBAAuB;AACvB,uCAAuC;AACvC,MAAM;AACN,IAAI;AAEJ,qBAAqB;AACrB,oBAAoB;AACpB,KAAK"}
+{"version":3,"file":"middleware.js","sourceRoot":"","sources":["../../../src/routes/auth/middleware.ts"],"names":[],"mappings":""}

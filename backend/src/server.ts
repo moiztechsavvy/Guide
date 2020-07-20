@@ -5,34 +5,15 @@ var morgan = require("morgan");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var path = require("path");
-const cors = require("cors");
+var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
 
 //Self Created Modules.
+
 var home = require("./routes");
-// var auth = require("./routes/auth/authorization");
-// var userHome = require("./routes/user/userhome");
-// var authMiddleware = require("./routes/auth/middleware");
-//DataBase Connection.
-var sqlite3 = require("sqlite3").verbose();
-// import { open } from "sqlite";
-
-var db = new sqlite3.Database("MAINDATABASE.db", (err) => {
-  if (err) {
-    return console.error(err.message);
-  }
-  console.log("Connected to the SQlite database");
-});
-
-// (async () => {
-//   // open the database
-//   console.log("syutfnsdfsn");
-//   var db = await open({
-//     filename: "../database/database.db",
-//     driver: sqlite3.Database,
-//   });
-// })();
+var db = require("./Database/index");
+var login = require("./routes/auth/login");
 
 const port = 5000;
 const app = express();
@@ -47,11 +28,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
 
-// app.use("/auth", auth);
-app.use("", home);
+// API routes Defined Here.
 
-// app.use("/user", authMiddleware.ensureLoggedIn, userHome);
-//
+app.use("", home);
+app.use("/auth", login);
+
+//Send Back Error Response.
 app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({
     message: err.message,
@@ -59,6 +41,7 @@ app.use(function (err, req, res, next) {
   });
 });
 
+// App Listening
 app.listen(port, (err) => {
   if (err) {
     return console.error(err);
