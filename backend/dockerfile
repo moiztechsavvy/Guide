@@ -14,6 +14,6 @@ COPY nodemon.json ./
 
 RUN apk add --no-cache python2
 
-CMD npm install -g node-pre-gyp node-gyp typescript ; npm install sqlite3 source ; npm install --no-bin-links ; npm install -g nodemon ; nodemon
+CMD npm install -g node-pre-gyp node-gyp typescript ; npm install sqlite3 source ; npm install --no-bin-links ; npm install -g nodemon ; npm rebuild; nodemon
 
 EXPOSE 5000
