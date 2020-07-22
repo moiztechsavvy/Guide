@@ -1,7 +1,3 @@
-let sqlInjection = (input: string) => {
-    //Return true if input is okay, false if the input is an injection.
-    return true;
-}
 
 //Validates email string against regex
 //after checking for SQL Injection.
