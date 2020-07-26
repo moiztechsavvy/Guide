@@ -8,6 +8,7 @@ var path = require("path");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
+const auth = require("./routes/auth/authentication");
 //Self Created Modules.
 var home = require("./routes");
 var db = require("./Database/index");
