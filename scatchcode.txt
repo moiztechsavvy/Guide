@@ -129,3 +129,21 @@
 // });
 
 // module.exports = router;
+
+//AUTHENTICATION FUNCTIONS TEST
+// app.post("/test", (req, res) => {
+//   //in form of {email: "example", password: "example"}
+//   const data = req.body;
+//   const result = auth.checkPasswordComplexityLength(data.password);
+//   if (result) {
+//     console.log("Good password");
+//   }
+//   else {
+//     console.log("Bad password");
+//   }
+//   auth.checkUser(data.email, data.password, type, db).then(result => {
+//     console.log("Yahoo", result);
+//   }).catch(err => {
+//     console.log("What is the problem boys");
+//   })
+// });

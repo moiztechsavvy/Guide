@@ -8,6 +8,7 @@ var path = require("path");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
+const auth = require("./routes/auth/authentication");
 
 //Self Created Modules.
 
@@ -52,3 +53,5 @@ app.listen(port, (err) => {
   }
   return console.log(`server is listening on ${port}`);
 });
+
+
