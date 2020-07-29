@@ -13,13 +13,13 @@ function Validate (input: string, type: string) {
         }
         break
         case "zip":
-        // Ensure zip code has a length of 5 and is only numbers.
+        // Ensure zip code is 5 characters and is only numbers.
         if (input.length == 5 && /^\d+$/.test(input)) {
             return (true)
         }
         break
         case "phone":
-        // Ensure phone number has a length of 10 and is only numbers.
+        // Ensure phone number is 10 characters and is only numbers.
         if (input.length == 10 && /^\d+$/.test(input)) {
             return (true)
         }
