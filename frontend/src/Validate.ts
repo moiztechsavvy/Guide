@@ -7,19 +7,19 @@ function Validate (input: string, type: string) {
         }
         break
         case "pass":
-        // Ensure password is at least 8 characters.
-        if (input.length >= 8) {
+        // Ensure password contains at least 8 characters that include at least 1 number and special character.
+        if (input.length >= 8 && /\d/.test(input) && /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(input)) {
             return (true)
         }
         break
         case "zip":
-        // Ensure zip code is 5 characters and is only numbers.
+        // Ensure zip code contains 5 characters that are only numbers.
         if (input.length == 5 && /^\d+$/.test(input)) {
             return (true)
         }
         break
         case "phone":
-        // Ensure phone number is 10 characters and is only numbers.
+        // Ensure phone number contains 10 characters that are only numbers.
         if (input.length == 10 && /^\d+$/.test(input)) {
             return (true)
         }
