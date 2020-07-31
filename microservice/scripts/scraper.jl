@@ -49,6 +49,7 @@ function scrape(ospath)
             subclass = replace(subclass, r"\s*photos"i => "")
             for (img, img_url) in extract_images(subclass_url)
                 try 
+                    img_url = replace(img_url, r"Thumb" => "")
                     HTTP.download(buildurl(img_url), ospath)
                     writedlm(io, [img class subclass], ",")
                 catch e
