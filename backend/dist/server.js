@@ -8,11 +8,10 @@ var path = require("path");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
-const auth = require("./routes/auth/authentication");
-//Self Created Modules.
+//Self Created Modules
 var home = require("./routes");
-var db = require("./Database/index");
-var login = require("./routes/auth/login");
+var models = require("./models/index");
+var auth = require("./routes/auth/login");
 const port = 5000;
 const app = express();
 app.use(morgan("dev"));
@@ -23,9 +22,18 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport, models.doctor, models.patient);
+// //Sync Database
+// models.sequelize.sync().then(function() {
+//   console.log('Nice! Database looks fine')
+// }).catch(function(err) {
+//   console.log(err, "Something went wrong with the Database Update!")
+// });
 // API routes Defined Here.
 app.use("", home);
-app.use("/auth", login);
+app.use("/auth", auth);
 //Send Back Error Response.
 app.use(function (err, req, res, next) {
     res.status(err.status || 500).json({

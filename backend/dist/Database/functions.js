@@ -1,17 +1,17 @@
 var db = require("./index");
 var express = require("express");
 module.exports = {
-    getallvalues: function () {
-        return db.any("SELECT * FROM users");
+    getAllDoctorValues: function () {
+        return db.run(`SELECT * FROM doctor`);
     },
-    searchDBforEmail: function (email) {
-        return db.any(`SELECT * FROM users WHERE email = $1`, [email]);
+    searchDBforDoctorEmail: function (email) {
+        return db.run(`SELECT * FROM doctor WHERE email = $1`, [email]);
     },
-    searchDBforId: function (id) {
-        return db.any(`SELECT * FROM users WHERE id = $1`, [id]);
+    searchDBforDoctorId: function (id) {
+        return db.run(`SELECT * FROM doctor WHERE id = $1`, [id]);
     },
-    createUser: function (user) {
-        return db.any(`INSERT INTO users(firstname,lastname,email,password,created_at,address,state,zipcode) VALUES 
+    createDoctor: function (user) {
+        return db.run(`INSERT INTO doctor(firstname,lastname,email,password,created_at,address,state,zipcode) VALUES 
       ($1,$2,$3,$4,$5,$6,$7,$8)`, [
             user.firstname,
             user.lastname,
@@ -23,5 +23,27 @@ module.exports = {
             user.zipcode,
         ]);
     },
+    getAllPatientValues: function () {
+        return db.run(`SELECT * FROM patient`);
+    },
+    searchDBforPatientEmail: function (email) {
+        return db.run(`SELECT * FROM patient WHERE email = $1`, [email]);
+    },
+    searchDBforPatientId: function (id) {
+        return db.run(`SELECT * FROM patient WHERE id = $1`, [id]);
+    },
+    createPatient: function (user) {
+        return db.run(`INSERT INTO patient(firstname,lastname,email,password,created_at,address,state,zipcode) VALUES 
+      ($1,$2,$3,$4,$5,$6,$7,$8)`, [
+            user.firstname,
+            user.lastname,
+            user.email,
+            user.password,
+            user.created_at,
+            user.Address,
+            user.state,
+            user.zipcode,
+        ]);
+    }
 };
 //# sourceMappingURL=functions.js.map

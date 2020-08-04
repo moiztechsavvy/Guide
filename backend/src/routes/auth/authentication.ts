@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 const sqlite = require('sqlite3').verbose();
 
 //GOAL: Used to check if password matches the complexity and length requirements
@@ -12,6 +12,14 @@ const checkPasswordComplexityLength = ((password) => {
     }
     return false
 })
+
+//GOAL: Used to check if email is in a valid format
+//RETURN: true or false
+function emailValidator(email) {
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+}
+
 //GOAL: Used to hash password with bcrypt and store it in db
 //Takes in email, password and type of user(doctor or user) and db to query
 //RETURN: Promise of string "Row added"
@@ -77,6 +85,8 @@ async function checkUser(email, password, type, db) {
     }
 }
 
+//returns true or false
+exports.emailValidator = emailValidator;
 //returns promise true or false
 exports.checkUser = checkUser;
 //returns promise

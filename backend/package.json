@@ -32,6 +32,8 @@
     "pg-promise": "^10.5.3",
     "source": "0.0.3",
     "sqlite": "^4.0.11",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "sequelize":"^6.3.4",
+    "passport-google-oauth20":"^2.0.0"
   }
 }
