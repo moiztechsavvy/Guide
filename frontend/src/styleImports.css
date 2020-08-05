@@ -1,0 +1,40 @@
+
+    @import url(https://www.carenade.com/Content/Style.css);
+    @import url(https://www.carenade.com/Content/CustomStyle.css);
+    @import url(https://www.carenade.com/Content/site.css);
+    @import url(https://www.carenade.com/Scripts/jquery-1.10.2.js);
+    @import url(https://www.carenade.com/Scripts/modernizr-2.6.2.js);
+    @import url(https://www.carenade.com/Scripts/jquery.validate.js);
+    @import url(https://www.carenade.com/Scripts/jquery.validate.unobtrusive.js);
+    @import url(https://www.carenade.com/Scripts/jquery.unobtrusive-ajax.min.js);
+    @import url(https://www.carenade.com/Scripts/jquery.validate.unobtrusive.min.js);
+    @import url(https://www.carenade.com/Scripts/bootstrap.js);
+    @import url(https://www.carenade.com/Scripts/respond.js);
+    @import url(https://www.carenade.com/Scripts/file.upload.js);
+    @import url(https://www.carenade.com/Scripts/jquery.nicescroll.min.js);
+    @import url(https://www.carenade.com/Scripts/menu.js);
+    @import url(https://www.carenade.com/Scripts/owl.carousel.min.js);
+    @import url(https://www.carenade.com/Scripts/star-rating.min.js);
+    @import url(https://www.carenade.com/Scripts/lightbox.min.js);
+    @import url(https://www.carenade.com/Scripts/jquery.ddslick.min.js);
+    @import url(https://www.carenade.com/Scripts/showdown.min.js);
+    @import url(https://www.carenade.com/Scripts/general.js);
+    @import url(https://kit.fontawesome.com/6a425b27fa.js);
+    @import url(https://www.carenade.com/Content/Site.css);
+    @import url(https://maps.googleapis.com/maps/api/js?key=AIzaSyATMlr6dEXCnUFYdSnlYPjY-j-EBK9JpLQ&libraries=places);
+   
+ 
+    .banner-content .desktop-phone {
+        font-size: 20px;
+        color: white;
+    }
+    .banner-content #query, .banner-content #searchSubmit {
+        height: 55px;
+        font-size: 20px;
+    }
+    .banner .banner-content h1 {
+        color: white;
+    }
+
+  
+           

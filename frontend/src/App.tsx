@@ -1,10 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './styleImports.css';
+import _mainNav from './nav';
+import _mainContent from './mainContent';
+import _Footer from './Footer';
+import _signInModal from './signInModal';
 
 function App() {
   return (
+    
     <div className="App">
+
+      <_mainNav />
+      <_signInModal/>
+      <_mainContent />
+      <_Footer />
+
+
+
+
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -20,6 +36,7 @@ function App() {
         </a>
       </header>
     </div>
+    
   );
 }
 
