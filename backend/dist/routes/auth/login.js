@@ -3,12 +3,12 @@ var router = express.Router();
 var passport = require("passport");
 //Login routes
 //Doctors
-router.get("/doctors/login", (req, res) => {
+router.get("/doctor/login", (req, res) => {
     res.json({
         currently: "Doctors login here",
     });
 });
-router.post("/doctors/login", passport.authenticate('local-doctor-login'));
+router.post("/doctor/login", passport.authenticate('local-doctor-login'));
 //Patients
 router.get("/patient/login", (req, res) => {
     res.json({
@@ -18,25 +18,19 @@ router.get("/patient/login", (req, res) => {
 router.post("/patient/login", passport.authenticate('local-patient-login'));
 //Signup routes
 //Doctors
-router.get("/doctors/signup", (req, res) => {
+router.get("/doctor/signup", (req, res) => {
     res.json({
         currently: "Doctors signup here",
     });
 });
-router.post('/doctors/signup', passport.authenticate('local-doctor-signup', {
-    successRedirect: '/',
-    failureRedirect: '/doctors/signup'
-}));
+router.post('/doctor/signup', passport.authenticate('local-doctor-signup'));
 //Patients
 router.get("/patient/signup", (req, res) => {
     res.json({
         currently: "Patients signup here",
     });
 });
-router.post('/patient/signup', passport.authenticate('local-patient-signup', {
-    successRedirect: '/',
-    failureRedirect: '/signup'
-}));
+router.post('/patient/signup', passport.authenticate('local-patient-signup'));
 //Google OAuth
 // passport.authenticate middleware is used here to authenticate the request
 router.get('/patient/google', passport.authenticate('google', {
