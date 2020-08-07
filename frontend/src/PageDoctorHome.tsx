@@ -21,9 +21,11 @@ function Appointments() {
     if (!DoctorData.appointments.length) {
         appointments = <a className="no-appointments" href="">No appointments</a>
     } else {
-       appointments = DoctorData.appointments.map(user => {
-            <div className="appointment" key={user.id}>{user.firstName} {user.lastName}</div>
-       })
+       appointments = DoctorData.appointments.map(
+            user => {
+                <div className="appointment" key={user.id}>{user.firstName} {user.lastName}</div>
+            }
+       )
     }
 
     return (
