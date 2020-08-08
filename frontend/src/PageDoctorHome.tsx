@@ -28,7 +28,7 @@ function Appointments() {
         )
     }
 
-    return (
+    return(
         <div>
             {appointments}
         </div>
