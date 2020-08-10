@@ -8,29 +8,9 @@ function DoctorHome() {
             <header>
                 <h2 className="welcome">Welcome {DoctorData.firstName} {DoctorData.lastName}</h2>
             </header>
+            <button className="add-appointment" type="button">Add Appointment</button>
             <button className="callendy" type="button">Link with Callendy</button>
-            <Appointments />
             <Footer />
-        </div>
-    )
-}
-
-function Appointments() {
-    let appointments = {}
-
-    if (!DoctorData.appointments.length) {
-        appointments = <a className="no-appointments" href="">No appointments</a>
-    } else {
-        appointments = DoctorData.appointments.map(
-            user => {
-                <div className="appointment" key={user.id}>{user.firstName} {user.lastName}</div>
-            }
-        )
-    }
-
-    return(
-        <div>
-            {appointments}
         </div>
     )
 }
