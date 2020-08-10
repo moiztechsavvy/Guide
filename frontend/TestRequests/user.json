@@ -1,21 +1,4 @@
 {
     "firstName": "Bob",
-    "lastName": "Ross",
-    "appointments": [
-        {
-            "id": 1,
-            "firstName": "Alec",
-            "lastName": "Feldman"
-        },
-        {
-            "id": 2,
-            "firstName": "Alex",
-            "lastName": "M"
-        },
-        {
-            "id": 3,
-            "firstName": "Vitaly",
-            "lastName": "Ford"
-        }
-    ]
+    "lastName": "Ross"
 }
