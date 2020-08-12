@@ -42,7 +42,7 @@ def preprocess(img_bytes):
 def classify(img_bytes):
     img = preprocess(img_bytes)
     output = model.forward(img)
-    label = LABELS[torch.argmax(output)]
+    label = LABELS[torch.argmax(output).item()]
     return label
 
 
