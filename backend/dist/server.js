@@ -8,10 +8,12 @@ var path = require("path");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
+// const auth = require("./routes/auth/authentication");
 //Self Created Modules.
 var home = require("./routes");
 var db = require("./Database/index");
 var login = require("./routes/auth/login");
+var signup = require("./routes/auth/signup");
 const port = 5000;
 const app = express();
 app.use(morgan("dev"));
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.SECRET_COOKIE));
 // API routes Defined Here.
 app.use("", home);
+app.use("/auth", signup);
 app.use("/auth", login);
 //Send Back Error Response.
 app.use(function (err, req, res, next) {
