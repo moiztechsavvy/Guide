@@ -1,14 +1,17 @@
 import React from 'react'
-import { Route, Router, Switch } from 'react-router'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import PageNotFound from './components/PageNotFound'
 
-function HeaderNav(){
+//the componenets one so for now I just put the page not found
+function HeaderNav() {
     return (
         <div>
-          <NavBar />
-          <Switch>
-            <Route exact path='' component={} />   
-            <Route exact path='' component={} />
-          </Switch>
+            <BrowserRouter>
+                <Switch>
+                 <Route exact path='' component={PageNotFound} />
+                 <Route exact path='' component={PageNotFound} />
+                </Switch>
+            </BrowserRouter>
         </div>
     )
 }
