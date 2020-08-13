@@ -1,7 +1,7 @@
 import React from 'react'
-import Footer from './Footer'
-import Appointments from './Appointments'
-import DoctorData from '../../TestRequests/doctor.json'
+import Appointments from './components/Appointments'
+import Footer from './components/Footer'
+import DoctorData from '../TestRequests/doctor.json'
 
 function DoctorHome() {
     return(

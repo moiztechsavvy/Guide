@@ -1,17 +1,17 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import PageNotFound from './PageNotFound'
+import Message404 from './components/Message404'
 
-function Page404() {
+function NotFound404() {
     return(
         <div>
           <BrowserRouter>
             <Switch>
-              <Route path='*' component={PageNotFound}/>
+              <Route path='*' component={Message404}/>
             </Switch>
           </BrowserRouter>
         </div>
     )
 }
    
-export default Page404
+export default NotFound404
