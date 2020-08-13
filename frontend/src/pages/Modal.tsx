@@ -3,7 +3,7 @@ import axios from 'axios'
 import Validate from '../functions/Validate'
 import '../styles/Modal.css'
 
-class _Modal extends React.Component<{}, {emailInput: string, passwordInput: string}>{
+class _Modal extends React.Component<{}, {emailInput: string, passwordInput: string}> {
     constructor(props: string) {
         super(props)
         this.state = {emailInput:'', passwordInput: ''}
