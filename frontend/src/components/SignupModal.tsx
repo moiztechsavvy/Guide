@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Validate from '../functions/Validate'
-import './Modal.css'
+import '../styles/Modal.css'
 
 class SignUpModal extends React.Component<{}, {emailInput: string, passwordInput: string, phoneInput: string, zipInput: string}> {
     constructor(props: string) {

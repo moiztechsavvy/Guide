@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 import InvalidLogin from '../../TestRequests/invalidlogin.json'
-import './styles/AlertStyle.css'
+import '../styles/AlertStyle.css'
 
 function ErrorFunction() {
     return(
