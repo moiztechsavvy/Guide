@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import Message404 from './components/Message404'
+import Message404 from '../components/Message404'
 
 function NotFound404() {
     return(
