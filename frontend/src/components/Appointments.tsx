@@ -6,8 +6,8 @@ function Appointments(props: any) {
     if (!props.appointments.length) {
         appointments = <a className='no-appointments' href=''>No Appointments</a>
     } else {
-        appointments = props.appointments.map((user: any) => {
-            <div className='appointment' key={user.id}>{user.firstName} {user.lastName}</div>
+        appointments = props.appointments.map((patient: any) => {
+            <div className='appointment' key={patient.id}>{patient.firstName} {patient.lastName}</div>
         })
     }
 
