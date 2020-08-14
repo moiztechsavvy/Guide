@@ -7,7 +7,7 @@
 * Add any files this script calls from the github
 * Fix all the other errors (Currently: 127 errors!)
 */
-
+/*
 // Vars
 var isMuted;
 var videoIsPaused;
@@ -447,7 +447,7 @@ function windowResized() {
 //   setTimeout(windowResized, 1000);
 // }
 // End Fullscreen
-
+/*
 // Mute microphone
 function muteMicrophone() {
   var audioTrack = null;
@@ -951,4 +951,4 @@ function startUp() {
   navigator.mediaDevices.ondevicechange = () => window.location.reload();
 }
 
-startUp();
+startUp();*/
