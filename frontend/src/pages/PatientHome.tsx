@@ -1,12 +1,12 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import UserData from '../../TestRequests/user.json'
+import PatientData from '../../TestRequests/user.json'
 
-function UserHome() {
+function PatientHome() {
     return(
         <div className='user-home'>
           <header>
-            <h2 className='welcome'>Welcome {UserData.firstName} {UserData.lastName}</h2>
+            <h2 className='welcome'>Welcome {PatientData.firstName} {PatientData.lastName}</h2>
           </header>
           <button className='search-derm' type='button'>Search Nearest Dermatologists</button>
           <Footer />
@@ -14,4 +14,4 @@ function UserHome() {
     )
 }
 
-export default UserHome
+export default PatientHome
