@@ -3,18 +3,17 @@
 * Do not make a pull request to master branch until this file is fixed (or commented out ig)
 *
 * TODO:
-* Modify server.js to handle any routes this file calls
+* Done! - Modify server.js to handle any routes this file calls
 * Add any files this script calls from the github
-* Fix all the other errors (Currently: 127 errors!)
+* Fix all the other errors (Currently: 72 errors!)
 */
-/*
 // Vars
 var isMuted;
 var videoIsPaused;
 var dataChanel = null;
 const browserName = getBrowserName();
-const url = window.location.href;
-const roomHash = url.substring(url.lastIndexOf("/") + 1).toLowerCase();
+const thisUrl = window.location.href;
+const roomHash = thisUrl.substring(thisUrl.lastIndexOf("/") + 1).toLowerCase();
 var mode = "camera";
 // var isFullscreen = false;
 var sendingCaptions = false;
@@ -50,7 +49,7 @@ var VideoChat = {
   // accepted callback to the onMediaStream function, otherwise callback to the
   // noMediaStream function.
   requestMediaStream: function (event) {
-    logIt("requestMediaStream");
+    console.log("requestMediaStream");
     rePositionLocalVideo();
     navigator.mediaDevices
       .getUserMedia({
@@ -63,8 +62,8 @@ var VideoChat = {
         setTimeout(() => localVideoText.fadeOut(), 5000);
       })
       .catch((error) => {
-        logIt(error);
-        logIt(
+        console.log(error);
+        console.log(
           "Failed to get local webcam video, check webcam privacy settings"
         );
         // Keep trying to get user media
@@ -74,7 +73,7 @@ var VideoChat = {
 
   // Called when a video stream is added to VideoChat
   onMediaStream: function (stream) {
-    logIt("onMediaStream");
+    console.log("onMediaStream");
     VideoChat.localStream = stream;
     // Add the stream as video's srcObject.
     // Now that we have webcam video sorted, prompt user to share URL
@@ -115,26 +114,26 @@ var VideoChat = {
 
   // When we are ready to call, enable the Call button.
   readyToCall: function (event) {
-    logIt("readyToCall");
+    console.log("readyToCall");
     // First to join call will most likely initiate call
     if (VideoChat.willInitiateCall) {
-      logIt("Initiating call");
+      console.log("Initiating call");
       VideoChat.startCall();
     }
   },
 
   // Set up a callback to run when we have the ephemeral token to use Twilio's TURN server.
   startCall: function (event) {
-    logIt("startCall >>> Sending token request...");
+    console.log("startCall >>> Sending token request...");
     VideoChat.socket.on("token", VideoChat.onToken(VideoChat.createOffer));
     VideoChat.socket.emit("token", roomHash);
   },
 
   // When we receive the ephemeral token back from the server.
   onToken: function (callback) {
-    logIt("onToken");
+    console.log("onToken");
     return function (token) {
-      logIt("<<< Received token");
+      console.log("<<< Received token");
       // Set up a new RTCPeerConnection using the token's iceServers.
       VideoChat.peerConnection = new RTCPeerConnection({
         iceServers: token.iceServers,
@@ -152,7 +151,7 @@ var VideoChat = {
       });
       // Called when dataChannel is successfully opened
       dataChanel.onopen = function (event) {
-        logIt("dataChannel opened");
+        console.log("dataChannel opened");
       };
       // Handle different dataChannel types
       dataChanel.onmessage = function (event) {
@@ -183,21 +182,21 @@ var VideoChat = {
       VideoChat.peerConnection.oniceconnectionstatechange = function (event) {
         switch (VideoChat.peerConnection.iceConnectionState) {
           case "connected":
-            logIt("connected");
+            console.log("connected");
             // Once connected we no longer have a need for the signaling server, so disconnect
             VideoChat.socket.disconnect();
             break;
           case "disconnected":
-            logIt("disconnected");
+            console.log("disconnected");
           case "failed":
-            logIt("failed");
+            console.log("failed");
             // VideoChat.socket.connect
             // VideoChat.createOffer();
             // Refresh page if connection has failed
             location.reload();
             break;
           case "closed":
-            logIt("closed");
+            console.log("closed");
             break;
         }
       };
@@ -207,13 +206,13 @@ var VideoChat = {
 
   // When the peerConnection generates an ice candidate, send it over the socket to the peer.
   onIceCandidate: function (event) {
-    logIt("onIceCandidate");
+    console.log("onIceCandidate");
     if (event.candidate) {
-      logIt(
+      console.log(
         `<<< Received local ICE candidate from STUN/TURN server (${event.candidate.address})`
       );
       if (VideoChat.connected) {
-        logIt(`>>> Sending local ICE candidate (${event.candidate.address})`);
+        console.log(`>>> Sending local ICE candidate (${event.candidate.address})`);
         VideoChat.socket.emit(
           "candidate",
           JSON.stringify(event.candidate),
@@ -235,7 +234,7 @@ var VideoChat = {
     // Update caption text
     captionText.text("Found other user... connecting");
     rtcCandidate = new RTCIceCandidate(JSON.parse(candidate));
-    logIt(
+    console.log(
       `onCandidate <<< Received remote ICE candidate (${rtcCandidate.address} - ${rtcCandidate.relatedAddress})`
     );
     VideoChat.peerConnection.addIceCandidate(rtcCandidate);
@@ -243,7 +242,7 @@ var VideoChat = {
 
   // Create an offer that contains the media capabilities of the browser.
   createOffer: function () {
-    logIt("createOffer >>> Creating offer...");
+    console.log("createOffer >>> Creating offer...");
     VideoChat.peerConnection.createOffer(
       function (offer) {
         // If the offer is created successfully, set it as the local description
@@ -253,8 +252,8 @@ var VideoChat = {
         VideoChat.socket.emit("offer", JSON.stringify(offer), roomHash);
       },
       function (err) {
-        logIt("failed offer creation");
-        logIt(err, true);
+        console.log("failed offer creation");
+        console.log(err, true);
       }
     );
   },
@@ -265,9 +264,9 @@ var VideoChat = {
   // description to the peerConnection object. Then the answer is created in the
   // same manner as the offer and sent over the socket.
   createAnswer: function (offer) {
-    logIt("createAnswer");
+    console.log("createAnswer");
     return function () {
-      logIt(">>> Creating answer...");
+      console.log(">>> Creating answer...");
       rtcOffer = new RTCSessionDescription(JSON.parse(offer));
       VideoChat.peerConnection.setRemoteDescription(rtcOffer);
       VideoChat.peerConnection.createAnswer(
@@ -276,8 +275,8 @@ var VideoChat = {
           VideoChat.socket.emit("answer", JSON.stringify(answer), roomHash);
         },
         function (err) {
-          logIt("Failed answer creation.");
-          logIt(err, true);
+          console.log("Failed answer creation.");
+          console.log(err, true);
         }
       );
     };
@@ -286,7 +285,7 @@ var VideoChat = {
   // When a browser receives an offer, set up a callback to be run when the
   // ephemeral token is returned from Twilio.
   onOffer: function (offer) {
-    logIt("onOffer <<< Received offer");
+    console.log("onOffer <<< Received offer");
     VideoChat.socket.on(
       "token",
       VideoChat.onToken(VideoChat.createAnswer(offer))
@@ -296,13 +295,13 @@ var VideoChat = {
 
   // When an answer is received, add it to the peerConnection as the remote description.
   onAnswer: function (answer) {
-    logIt("onAnswer <<< Received answer");
+    console.log("onAnswer <<< Received answer");
     var rtcAnswer = new RTCSessionDescription(JSON.parse(answer));
     // Set remote description of RTCSession
     VideoChat.peerConnection.setRemoteDescription(rtcAnswer);
     // The caller now knows that the callee is ready to accept new ICE candidates, so sending the buffer over
     VideoChat.localICECandidates.forEach((candidate) => {
-      logIt(`>>> Sending local ICE candidate (${candidate.address})`);
+      console.log(`>>> Sending local ICE candidate (${candidate.address})`);
       // Send ice candidate over websocket
       VideoChat.socket.emit("candidate", JSON.stringify(candidate), roomHash);
     });
@@ -312,7 +311,7 @@ var VideoChat = {
 
   // Called when a stream is added to the peer connection
   onAddStream: function (event) {
-    logIt("onAddStream <<< Received new stream from remote. Adding it...");
+    console.log("onAddStream <<< Received new stream from remote. Adding it...");
     // Update remote video source
     VideoChat.remoteVideo.srcObject = event.stream;
     // Close the initial share url snackbar
@@ -351,11 +350,6 @@ function getBrowserName() {
     name = "Safari";
   }
   return name;
-}
-
-// Basic logging class wrapper
-function logIt(message, error) {
-  console.log(message);
 }
 
 // Called when socket receives message that room is full
@@ -447,7 +441,7 @@ function windowResized() {
 //   setTimeout(windowResized, 1000);
 // }
 // End Fullscreen
-/*
+
 // Mute microphone
 function muteMicrophone() {
   var audioTrack = null;
@@ -548,8 +542,8 @@ function swap() {
         switchStreamHelper(stream);
       })
       .catch(function (err) {
-        logIt(err);
-        logIt("Error sharing screen");
+        console.log(err);
+        console.log("Error sharing screen");
         Snackbar.close();
       });
     // If mode is screenshare then switch to webcam
@@ -650,8 +644,8 @@ function startSpeech() {
     // VideoChat.recognition.lang = "en";
   } catch (e) {
     sendingCaptions = false;
-    logIt(e);
-    logIt("error importing speech library");
+    console.log(e);
+    console.log("error importing speech library");
     // Alert other user that they cannon use live caption
     dataChanel.send("cap:notusingchrome");
     return;
@@ -680,7 +674,7 @@ function startSpeech() {
     }
   };
   VideoChat.recognition.onend = function () {
-    logIt("on speech recording end");
+    console.log("on speech recording end");
     // Restart speech recognition if user has not stopped it
     if (sendingCaptions) {
       startSpeech();
@@ -951,4 +945,4 @@ function startUp() {
   navigator.mediaDevices.ondevicechange = () => window.location.reload();
 }
 
-startUp();*/
+startUp();
