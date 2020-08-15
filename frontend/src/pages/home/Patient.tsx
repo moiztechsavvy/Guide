@@ -1,10 +1,10 @@
 import React from 'react'
-import Footer from '../components/Footer'
-import PatientData from '../../TestRequests/user.json'
+import Footer from '../../components/Footer'
+import PatientData from '../../../TestRequests/patient.json'
 
-function PatientHome() {
+function Patient() {
     return(
-        <div className='user-home'>
+        <div className='patient'>
           <header>
             <h2 className='welcome'>Welcome {PatientData.firstName} {PatientData.lastName}</h2>
           </header>
@@ -14,4 +14,4 @@ function PatientHome() {
     )
 }
 
-export default PatientHome
+export default Patient

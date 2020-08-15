@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Modal from './pages/Modal'
+import Home from './pages/home/Home'
 import * as serviceWorker from './functions/serviceWorker'
 import './styles/index.css'
 
 ReactDOM.render(
     <React.StrictMode>
-      <Modal />
+      <Home />
     </React.StrictMode>,
     document.getElementById('root')
 )

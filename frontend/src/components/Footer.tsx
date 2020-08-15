@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Footer.css'
 
-function _Footer() {
+function Footer() {
     return(
         <footer id='footer'>
           <div className='d-flex'>
@@ -40,4 +40,4 @@ function _Footer() {
     )
 }
 
-export default _Footer
+export default Footer

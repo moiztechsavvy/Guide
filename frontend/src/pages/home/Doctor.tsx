@@ -1,11 +1,11 @@
 import React from 'react'
-import Appointments from '../components/Appointments'
-import Footer from '../components/Footer'
-import DoctorData from '../../TestRequests/doctor.json'
+import Appointments from '../../components/Appointments'
+import Footer from '../../components/Footer'
+import DoctorData from '../../../TestRequests/doctor.json'
 
-function DoctorHome() {
+function Doctor() {
     return(
-        <div className='doctor-home'>
+        <div className='doctor'>
           <header>
             <h2 className='welcome'>Welcome {DoctorData.firstName} {DoctorData.lastName}</h2>
           </header>
@@ -17,4 +17,4 @@ function DoctorHome() {
     )
 }
 
-export default DoctorHome
+export default Doctor

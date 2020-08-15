@@ -15,3 +15,5 @@ function HeaderNav() {
         </div>
     )
 }
+
+export default HeaderNav
