@@ -1,6 +1,6 @@
 import React from 'react'
-import Appointments from '../../components/Appointments'
-import Footer from '../../components/Footer'
+import Appointments from '../Appointments'
+import Footer from '../Footer'
 import DoctorData from '../../../TestRequests/doctor.json'
 
 function Doctor() {

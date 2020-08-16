@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../components/Footer'
+import Footer from '../Footer'
 import PatientData from '../../../TestRequests/patient.json'
 
 function Patient() {
