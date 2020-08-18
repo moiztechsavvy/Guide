@@ -9,13 +9,13 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 require("dotenv").config();
 const auth = require("./routes/auth/authentication");
-var statics = path.join(__dirname, "statics");
 
 //Self Created Modules.
 
 var home = require("./routes");
 var db = require("./Database/index");
 var login = require("./routes/auth/login");
+//var chat = require('./routes/vidchat');
 
 const port = 5000;
 const app = express();
