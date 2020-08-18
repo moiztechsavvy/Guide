@@ -13,20 +13,20 @@ router.post("/login", (req, res, next) => {
     if (helperfunctions.validateuser(req.body)) {
         dbfunctions.searchPatientTableForValue(req.body.email).then((user) => {
             //If user us found in the database.
-            if (user.length !== "undefined") {
+            if (user !== "undefined") {
                 //compare password with Hashed Password
-                bcrypt.compare(req.body.password, user[0].password).then((result) => {
+                bcrypt.compare(req.body.password, user.password).then((result) => {
                     //If Passwords Matched.
                     if (result) {
                         const isSecure = req.app.get("env") != "development";
                         //Setting the 'set-cookie' header
-                        res.cookie("user_id", user[0].id, {
+                        res.cookie("user_id", user.id, {
                             httpOnly: true,
                             signed: true,
                             secure: isSecure,
                         });
                         res.json({
-                            userId: user[0].id,
+                            userId: user.id,
                             currently: "You're Logged In 🔓",
                         });
                     }
