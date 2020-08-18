@@ -15,15 +15,15 @@ module.exports = {
     },
     searchPatientTableForValue: function (email) {
         return new Promise(function (resolve, reject) {
-            let sql = `SELECT * FROM user WHERE email = '${email}'`;
-            db.run(sql, (error, row) => {
-                if (error) {
-                    console.log(error);
-                    reject(error);
+            var sql = "select * from user where email = ?";
+            var params = [email];
+            db.get(sql, params, (err, row) => {
+                if (err) {
+                    // res.status(400).json({"error":err.message});
+                    reject(err);
+                    return;
                 }
-                else {
-                    resolve(row);
-                }
+                resolve(row);
             });
         });
     },
