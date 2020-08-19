@@ -2,7 +2,7 @@
 .open ./backend/MAINDATABASE.db
 
 /* Create user info table */
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS patient (
     id INTEGER PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS doctor (
     lastname TEXT,
     address TEXT, 
     state TEXT,
-    zipcode TEXT
+    zipcode TEXT,
+    place_id TEXT
 );
 
 /* Add a user */
