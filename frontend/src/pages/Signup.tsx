@@ -3,7 +3,7 @@ import axios from 'axios'
 import Validate from '../functions/Validate'
 import '../styles/Login.css'
 
-class Register extends React.Component<{}, {emailInput: string, passwordInput: string, phoneInput: string, zipInput: string}> {
+class Signup extends React.Component<{}, {emailInput: string, passwordInput: string, phoneInput: string, zipInput: string}> {
     constructor(props: string) {
         super(props)
         this.state = {emailInput:'', passwordInput: '', phoneInput:'', zipInput:''}
@@ -61,4 +61,4 @@ class Register extends React.Component<{}, {emailInput: string, passwordInput: s
     }
 }
 
-export default Register
+export default Signup
