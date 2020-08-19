@@ -19,8 +19,19 @@ module.exports = {
       });
     });
   },
-  searchPatientTableforId: function (id) {
-    return db.all(`SELECT * FROM patient WHERE id = $1`, [id]);
+  searchPatientTableForId: function (id) {
+    return new Promise(function (resolve, reject) {
+      var sql = "select * from patient where id = ?";
+      var params = [id];
+      db.get(sql, params, (err, row) => {
+        if (err) {
+          // res.status(400).json({"error":err.message});
+          reject(err);
+          return;
+        }
+        resolve(row);
+      });
+    });
   },
   createPatient: function (user) {
     return new Promise(function (resolve, reject) {

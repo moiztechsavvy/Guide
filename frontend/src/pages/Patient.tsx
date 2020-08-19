@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from '../Footer'
-import PatientData from '../../../TestRequests/patient.json'
+import Footer from '../components/Footer'
+import PatientData from '../testrequests/patient.json'
 
 function Patient() {
     return(

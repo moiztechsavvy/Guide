@@ -48,25 +48,4 @@ router.post("/login", (req, res, next) => {
   }
 });
 
-function ensureLoggedIn(req, res, next) {
-  console.log(req.signedCookies);
-  if (req.signedCookies.user_id) {
-    next();
-  } else {
-    res.status(401);
-    next(new Error("Unauthorized"));
-  }
-}
-
-module.exports = {
-  ensureLoggedIn,
-};
-
-router.get("/:id", (req, res) => {
-  dbfunctions.searchDBforId(req.params.id).then((value) => {
-    res.json(value);
-  });
-  //Login App routes.
-});
-
 module.exports = router;
