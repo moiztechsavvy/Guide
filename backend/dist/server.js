@@ -14,6 +14,8 @@ var home = require("./routes");
 var db = require("./Database/index");
 var login = require("./routes/auth/login");
 var signup = require("./routes/auth/signup");
+var patienthome = require("./routes/patient/patient");
+var doctorhome = require("./routes/doctor/doctor");
 const port = 5000;
 const app = express();
 app.use(morgan("dev"));
@@ -28,6 +30,8 @@ app.use(cookieParser(process.env.SECRET_COOKIE));
 app.use("", home);
 app.use("/auth", signup);
 app.use("/auth", login);
+app.use("/patient", patienthome);
+app.use("/doctor", doctorhome);
 //Send Back Error Response.
 app.use(function (err, req, res, next) {
     res.status(err.status || 500).json({

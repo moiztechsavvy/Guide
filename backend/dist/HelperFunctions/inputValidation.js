@@ -13,6 +13,30 @@ let validateuser = (user) => {
         user.password.trim().length >= 8;
     return validEmail && validPassword;
 };
-exports.emailValidator = emailValidator;
-exports.validateuser = validateuser;
+function ensureLoggedIn(req, res, next) {
+    console.log(req.signedCookies);
+    if (req.signedCookies.user_id) {
+        next();
+    }
+    else {
+        res.status(401);
+        next(new Error("Unauthorized"));
+    }
+}
+function ensureAuthorized(req, res, next) {
+    console.log(req.signedCookies);
+    if (req.signedCookies.user_id == req.params.id) {
+        next();
+    }
+    else {
+        res.status(401);
+        next(new Error("Please Access your Own SHit"));
+    }
+}
+module.exports = {
+    ensureLoggedIn,
+    emailValidator,
+    validateuser,
+    ensureAuthorized,
+};
 //# sourceMappingURL=inputValidation.js.map

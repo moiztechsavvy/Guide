@@ -5,14 +5,14 @@ var dbfunctions = require("../../Database/helperfunctions");
 var inputValidation = require("../../HelperFunctions/inputValidation");
 var bcrypt = require("bcrypt");
 //Signup Route For Get Request.
-router.get("/signup", (req, res) => {
+router.get("patient/signup", (req, res) => {
   res.json({
     currently: "Nobodys signed up ",
   });
 });
 
 //Signup Request for Post Request
-router.post("/signup", (req, res, next) => {
+router.post("patient/signup", (req, res, next) => {
   if (inputValidation.validateuser(req.body)) {
     dbfunctions.searchPatientTableForValue(req.body.email).then((user) => {
       //If user not found object is Empty
