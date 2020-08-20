@@ -10,9 +10,6 @@ import Patient from '../pages/Patient'
 import patientData from '../testrequests/patient.json'
 import docData from '../testrequests/doctor.json'
 
-// had to change the import of docdata and patientdata here because my react does not support imports outside of src. 
-//You can change it back if needed.
-
 function Routes() {
 
     var doc = '/doctorHome' + docData.id
