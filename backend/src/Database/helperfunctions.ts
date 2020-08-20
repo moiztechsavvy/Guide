@@ -3,11 +3,11 @@ const sqlite = require("sqlite3").verbose();
 var db = require("../Database");
 module.exports = {
   getAllPatientsValues: function () {
-    return db.all("SELECT * FROM user");
+    return db.all("SELECT * FROM patient");
   },
   searchPatientTableForValue: function (email) {
     return new Promise(function (resolve, reject) {
-      var sql = "select * from user where email = ?";
+      var sql = "select * from patient where email = ?";
       var params = [email];
       db.get(sql, params, (err, row) => {
         if (err) {
@@ -21,7 +21,7 @@ module.exports = {
   },
   searchPatientTableForId: function (id) {
     return new Promise(function (resolve, reject) {
-      var sql = "select * from user where id = ?";
+      var sql = "select * from patient where id = ?";
       var params = [id];
       db.get(sql, params, (err, row) => {
         if (err) {
@@ -36,7 +36,7 @@ module.exports = {
   createPatient: function (user) {
     return new Promise(function (resolve, reject) {
       db.run(
-        `INSERT INTO user(firstname,lastname,email,password,created_at,address,state,zipcode) VALUES 
+        `INSERT INTO patient(firstname,lastname,email,password,created_at,address,state,zipcode) VALUES 
         ($1,$2,$3,$4,$5,$6,$7,$8)`,
         [
           user.firstname,
@@ -81,7 +81,7 @@ module.exports = {
         // make sure that email and hash are inside quotes otherwise db doesnt perceive them as strings and throws an error
         let sql = `INSERT INTO ${type} (email, password) VALUES (${
           "'" + email + "'"
-        }, ${"'" + hash + "'"});`;
+          }, ${"'" + hash + "'"});`;
         db.run(sql, (err) => {
           if (err) {
             reject(err);
@@ -109,7 +109,7 @@ module.exports = {
     });
   },
   //GOAL: Check if user password matches given password
-  //Takes in email, password and type of user(doctor or user) and db to query
+  //Takes in email, password and type of user(doctor or patient) and db to query
   //RETURN: Promise true if user password matches or false if the user is not in db or incorrect password
   checkUser: async function (email, password, type, db) {
     try {
