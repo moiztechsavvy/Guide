@@ -4,7 +4,7 @@ import homeImage from '../images/home.png'
 function Home() {
     return(
         <div>
-          <img className='home-image' src={homeImage} alt='Home page image' width='600' height='200' />
+          <img src={homeImage} alt='Home page image' width='600' height='200' />
         </div>
     )
 }
