@@ -6,11 +6,11 @@ function NavBar() {
         <div>
           <header>
             <p className='nav-bar'>
-              <a href='http://localhost:3000/home'>Home</a>
+              <a href='/home'>Home</a>
               &nbsp;
-              <a href='http://localhost:3000/login'>Login</a>
+              <a href='/login'>Login</a>
               &nbsp;
-              <a href='http://localhost:3000/signup'>Signup</a>
+              <a href='/signup'>Signup</a>
             </p>
           </header>
         </div>
