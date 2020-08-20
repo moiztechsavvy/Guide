@@ -1,11 +1,11 @@
 import React from 'react'
-import '../styles/header.css'
+import '../styles/NavBar.css'
 
-function Header() {
+function NavBar() {
     return (
         <div>
           <header>
-            <p className='head'>
+            <p className='nav-bar'>
               <a href='http://localhost:3000/home'>Home</a>
               &nbsp;
               <a href='http://localhost:3000/login'>Login</a>
@@ -17,4 +17,4 @@ function Header() {
     )
 }
 
-export default Header
+export default NavBar

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import SubmitButton from '../components/SubmitButton'
 import Validate from '../functions/Validate'
 import '../styles/Login.css'
 
@@ -53,9 +54,9 @@ class Signup extends React.Component<{}, {emailInput: string, passwordInput: str
                 <input type='tel' className='form-control' id='exampleInputPhone1' placeholder='Phone Number' value={this.state.phoneInput} onChange={this.handlePhone}></input>
               </div>
               <div className='form-group'>
-                <input type='number' className='form-control' id='exampleInputZipcode1' placeholder='Zipcode' value={this.state.zipInput} onChange={this.handleZip}></input>
+                <input type='number' className='form-control' id='exampleInputZipcode1' placeholder='ZIP Code' value={this.state.zipInput} onChange={this.handleZip}></input>
               </div>
-              <button type='submit' className='btn btn-primary' onClick={this.handleSubmit}>Submit</button>
+              <SubmitButton backColor='maroon' callback={this.handleSubmit} />
             </form>
         )
     }

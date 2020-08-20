@@ -1,30 +1,30 @@
 import React from 'react'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
-import Header from './Header'
-import Message404 from './Message404'
-import Doctor from '../pages/Doctor'
 import Patient from '../pages/Patient'
+import Doctor from '../pages/Doctor'
+import Message404 from './Message404'
 import patientData from '../testrequests/patient.json'
-import docData from '../testrequests/doctor.json'
+import doctorData from '../testrequests/doctor.json'
 
 function Routes() {
-
-    var doc = '/doctorHome' + docData.id
-    var patient = '/patientHome' + patientData.id
+    let patientHome = '/patientHome/' + patientData.id
+    let doctorHome = '/doctorHome/' + doctorData.id
 
     return (
         <div>
           <BrowserRouter>
             <Switch>
+              <Route exact path="/">
+                <Redirect to='/home' />
+              </Route>
               <Route exact path='/home' component={Home} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
-              <Route exact path='/' component={Header} />
-              <Route exact path={doc} component={Doctor} />
-              <Route exact path={patient} component={Patient} />
+              <Route exact path={patientHome} component={Patient} />
+              <Route exact path={doctorHome} component={Doctor} />
               <Route exact path='*' component={Message404} />
             </Switch>
           </BrowserRouter>

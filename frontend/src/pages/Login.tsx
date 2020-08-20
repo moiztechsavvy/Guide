@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import SubmitButton from '../components/SubmitButton'
 import Validate from '../functions/Validate'
 import '../styles/Login.css'
 
@@ -35,7 +36,7 @@ class Login extends React.Component<{}, {emailInput: string, passwordInput: stri
               <div className='form-group'>
                 <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Password' value={this.state.passwordInput} onChange={this.handlePassword}></input>
               </div>
-              <button type='submit' className='btn btn-primary' onClick={this.handleSubmit}>Submit</button>
+              <SubmitButton backColor='chocolate' callback={this.handleSubmit} />
             </form>
         )
     }
