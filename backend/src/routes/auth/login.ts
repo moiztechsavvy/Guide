@@ -14,8 +14,9 @@ router.post("/login", (req, res, next) => {
   //Validate User Input.
   if (helperfunctions.validateuser(req.body)) {
     dbfunctions.searchPatientTableForValue(req.body.email).then((user) => {
-      //If user us found in the database.
-      if (user !== "undefined") {
+      //If user is found in the database.
+      console.log(user);
+      if (user !== undefined) {
         //compare password with Hashed Password
         bcrypt.compare(req.body.password, user.password).then((result) => {
           //If Passwords Matched.

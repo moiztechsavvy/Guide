@@ -34,7 +34,8 @@ app.use("/patient", patienthome);
 app.use("/doctor", doctorhome);
 //Send Back Error Response.
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500).json({
+    res.status = err.status || 500;
+    res.json({
         message: err.message,
         error: req.app.get("env") === "development" ? err : {},
     });
