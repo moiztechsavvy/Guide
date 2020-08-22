@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {ButtonToolbar, SplitButton, MenuItem} from 'react-bootstrap'
+import SubmitButton from '../components/SubmitButton'
 import Validate from '../functions/Validate'
 import '../styles/Login.css'
 require('dotenv').config()
@@ -28,7 +29,7 @@ class Login extends React.Component<{}, {email: string, password: string}> {
     }
 
     handleSubmit() {
-        axios.post('3.224.66.200:5000/auth/' + PostLink, this.state)
+        axios.post('localhost:5000/auth/' + PostLink, this.state)
     }
 
     handlePDrop(){
@@ -55,7 +56,7 @@ class Login extends React.Component<{}, {email: string, password: string}> {
               <div className='form-group'>
                 <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Password' value={this.state.password} onChange={this.handlePassword}></input>
               </div>
-              <button type='submit' className='btn btn-primary' onClick={this.handleSubmit}>Submit</button>
+              <SubmitButton backColor='chocolate' callback={this.handleSubmit} />
             </form>
             </div>
         )

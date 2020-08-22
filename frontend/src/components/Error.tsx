@@ -3,7 +3,7 @@ import { Alert } from 'react-bootstrap'
 import InvalidLogin from '../testrequests/invalidlogin.json'
 import '../styles/AlertStyle.css'
 
-function ErrorFunction() {
+function Error() {
     return(
         <div className='alert'>
           <Alert bsStyle='danger'>
@@ -13,4 +13,4 @@ function ErrorFunction() {
     )
 }
 
-export default ErrorFunction
+export default Error

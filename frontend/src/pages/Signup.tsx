@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {ButtonToolbar, SplitButton, MenuItem} from 'react-bootstrap'
+import SubmitButton from '../components/SubmitButton'
 import Validate from '../functions/Validate'
 import '../styles/Login.css'
 
@@ -40,7 +41,7 @@ class Signup extends React.Component<{}, {email: string, password: string, phone
     }
 
     handleSubmit() {
-        axios.post('3.224.66.200:5000/auth/'+PostLink, this.state)
+        axios.post('localhost:5000/auth/'+PostLink, this.state)
     }
 
     handlePDrop(){
@@ -72,8 +73,9 @@ class Signup extends React.Component<{}, {email: string, password: string, phone
               </div>
               <div className='form-group'>
                 <input type='number' className='form-control' id='exampleInputZipcode1' placeholder='Zipcode' value={this.state.zip} onChange={this.handleZip}></input>
+
               </div>
-              <button type='submit' className='btn btn-primary' onClick={this.handleSubmit}>Submit</button>
+              <SubmitButton backColor='maroon' callback={this.handleSubmit} />
             </form>
           </div>
         )
