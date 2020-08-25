@@ -1,6 +1,5 @@
 import React from 'react'
 import Appointments from '../components/Appointments'
-import Footer from '../components/Footer'
 import doctorData from '../testrequests/doctor.json'
 
 function Doctor() {
@@ -12,7 +11,6 @@ function Doctor() {
           <button className='add-appointments' type='button'>Add Appointments</button>
           <button className='callendy' type='button'>Link with Callendy</button>
           <Appointments appointments={doctorData.appointments}/>
-          <Footer />
         </div>
     )
 }
