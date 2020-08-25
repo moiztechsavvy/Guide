@@ -30,7 +30,7 @@ var VideoChat = {
   connected: false,
   willInitiateCall: false,
   localICECandidates: [],
-  socket: io(),
+  socket: io('http://localhost:5000'),
   remoteVideo: document.getElementById("remote-video"),
   localVideo: document.getElementById("local-video"),
   recognition: undefined,
