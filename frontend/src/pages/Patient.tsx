@@ -1,15 +1,21 @@
 import React from 'react'
-import Footer from '../components/Footer'
-import patientData from '../testrequests/patient.json'
+import axios from 'axios'
 
-function Patient() {
+function Patient(props: any) {
+    let userId = props.match.params.userId
+    let firstName
+    let lastName
+
+    axios
+      .get('http://localhost:5000/patient/' + userId)
+      .then((respone) => console.log(respone.data))
+
     return(
         <div className='patient'>
           <header>
-            <h2 className='welcome'>Welcome {patientData.firstName} {patientData.lastName}</h2>
+            <h2 className='welcome'>Welcome {firstName} {lastName}</h2>
           </header>
           <button className='search-derm' type='button'>Search Nearest Dermatologists</button>
-          <Footer />
         </div>
     )
 }
