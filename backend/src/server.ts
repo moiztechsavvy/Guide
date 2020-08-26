@@ -15,7 +15,7 @@ const auth = require("./routes/auth/authentication");
 var home = require("./routes");
 var db = require("./Database/index");
 var login = require("./routes/auth/login");
-//var chat = require('./routes/vidchat');
+var chat = require('./routes/vidchat');
 
 const port = 5000;
 const app = express();
@@ -42,6 +42,7 @@ const url = require("url");
 
 app.use("", home);
 app.use("/auth", login);
+app.us("/vidchat",chat);
 
 //Send Back Error Response.
 app.use(function (err, req, res, next) {
